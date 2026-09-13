@@ -43,3 +43,7 @@ staticfiles/
 .vscode/
 *.swp
 *.swo
+
+# Credentials & Keys
+*.json
+!package.json

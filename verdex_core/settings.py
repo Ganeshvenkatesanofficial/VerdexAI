@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'companies',
     'tenders',
     'vault',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,23 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+# Media files (User uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Celery Configuration
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_BEAT_SCHEDULE = {}
+CELERY_IMPORTS = ('tenders.ingest',)
+
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+
+# Ollama Configuration
+OLLAMA_BASE_URL = 'http://localhost:11434'
+OLLAMA_MODEL = 'gpt-oss:20b'
