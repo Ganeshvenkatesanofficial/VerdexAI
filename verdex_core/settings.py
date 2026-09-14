@@ -142,7 +142,10 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_BEAT_SCHEDULE = {}
-CELERY_IMPORTS = ('tenders.ingest',)
+CELERY_IMPORTS = (
+    'tenders.ingest',
+    'tenders.verdict_tasks',
+)
 
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
